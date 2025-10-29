@@ -47,7 +47,7 @@ void main() {
 
     test('normalises application names and ignores invalid events', () {
       final List<NetworkEvent> events = <NetworkEvent>[
-        const NetworkEvent(
+        NetworkEvent(
           appName: '  Browser  ',
           timestamp: DateTime(2024, 01, 01, 12),
           direction: TrafficDirection.outgoing,
@@ -55,7 +55,7 @@ void main() {
           remoteAddress: '8.8.8.8',
           protocol: 'HTTPS',
         ),
-        const NetworkEvent(
+        NetworkEvent(
           appName: 'browser',
           timestamp: DateTime(2024, 01, 01, 13),
           direction: TrafficDirection.incoming,
@@ -63,7 +63,7 @@ void main() {
           remoteAddress: '8.8.4.4',
           protocol: 'HTTPS',
         ),
-        const NetworkEvent(
+        NetworkEvent(
           appName: 'Browser',
           timestamp: DateTime(2024, 01, 01, 14),
           direction: TrafficDirection.incoming,
@@ -71,7 +71,7 @@ void main() {
           remoteAddress: '1.1.1.1',
           protocol: 'HTTPS',
         ),
-        const NetworkEvent(
+        NetworkEvent(
           appName: 'Messenger',
           timestamp: DateTime(2024, 01, 01, 15),
           direction: TrafficDirection.outgoing,
@@ -90,7 +90,7 @@ void main() {
 
     test('returns applications deterministically when usage matches', () {
       final List<NetworkEvent> events = <NetworkEvent>[
-        const NetworkEvent(
+        NetworkEvent(
           appName: 'Email',
           timestamp: DateTime(2024, 01, 01, 10),
           direction: TrafficDirection.outgoing,
@@ -98,7 +98,7 @@ void main() {
           remoteAddress: '9.9.9.9',
           protocol: 'HTTPS',
         ),
-        const NetworkEvent(
+        NetworkEvent(
           appName: 'Browser',
           timestamp: DateTime(2024, 01, 01, 11),
           direction: TrafficDirection.outgoing,
@@ -122,7 +122,7 @@ void main() {
     test('ignores negative transfers in totals', () {
       final List<NetworkEvent> events = <NetworkEvent>[
         ...sampleEvents,
-        const NetworkEvent(
+        NetworkEvent(
           appName: 'Browser',
           timestamp: DateTime(2024, 01, 01, 14),
           direction: TrafficDirection.incoming,
