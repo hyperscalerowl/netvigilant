@@ -44,5 +44,95 @@ void main() {
     test('calculates total data transferred', () {
       expect(engine.totalDataTransferred(sampleEvents), 350);
     });
+
+    test('normalises application names and ignores invalid events', () {
+      final List<NetworkEvent> events = <NetworkEvent>[
+        const NetworkEvent(
+          appName: '  Browser  ',
+          timestamp: DateTime(2024, 01, 01, 12),
+          direction: TrafficDirection.outgoing,
+          bytesTransferred: 100,
+          remoteAddress: '8.8.8.8',
+          protocol: 'HTTPS',
+        ),
+        const NetworkEvent(
+          appName: 'browser',
+          timestamp: DateTime(2024, 01, 01, 13),
+          direction: TrafficDirection.incoming,
+          bytesTransferred: 200,
+          remoteAddress: '8.8.4.4',
+          protocol: 'HTTPS',
+        ),
+        const NetworkEvent(
+          appName: 'Browser',
+          timestamp: DateTime(2024, 01, 01, 14),
+          direction: TrafficDirection.incoming,
+          bytesTransferred: -50,
+          remoteAddress: '1.1.1.1',
+          protocol: 'HTTPS',
+        ),
+        const NetworkEvent(
+          appName: 'Messenger',
+          timestamp: DateTime(2024, 01, 01, 15),
+          direction: TrafficDirection.outgoing,
+          bytesTransferred: 150,
+          remoteAddress: '1.1.1.1',
+          protocol: 'HTTPS',
+        ),
+      ];
+
+      final Map<String, int> result = engine.topApplications(events, take: 5);
+
+      expect(result.length, 2);
+      expect(result['Browser'], 300);
+      expect(result['Messenger'], 150);
+    });
+
+    test('returns applications deterministically when usage matches', () {
+      final List<NetworkEvent> events = <NetworkEvent>[
+        const NetworkEvent(
+          appName: 'Email',
+          timestamp: DateTime(2024, 01, 01, 10),
+          direction: TrafficDirection.outgoing,
+          bytesTransferred: 100,
+          remoteAddress: '9.9.9.9',
+          protocol: 'HTTPS',
+        ),
+        const NetworkEvent(
+          appName: 'Browser',
+          timestamp: DateTime(2024, 01, 01, 11),
+          direction: TrafficDirection.outgoing,
+          bytesTransferred: 100,
+          remoteAddress: '8.8.8.8',
+          protocol: 'HTTPS',
+        ),
+      ];
+
+      final Map<String, int> result = engine.topApplications(events, take: 5);
+
+      expect(result.keys.first, 'Browser');
+      expect(result.keys.last, 'Email');
+    });
+
+    test('handles non-positive take values gracefully', () {
+      expect(engine.topApplications(sampleEvents, take: 0), isEmpty);
+      expect(engine.topApplications(sampleEvents, take: -5), isEmpty);
+    });
+
+    test('ignores negative transfers in totals', () {
+      final List<NetworkEvent> events = <NetworkEvent>[
+        ...sampleEvents,
+        const NetworkEvent(
+          appName: 'Browser',
+          timestamp: DateTime(2024, 01, 01, 14),
+          direction: TrafficDirection.incoming,
+          bytesTransferred: -20,
+          remoteAddress: '8.8.8.8',
+          protocol: 'HTTPS',
+        ),
+      ];
+
+      expect(engine.totalDataTransferred(events), 350);
+    });
   });
 }
