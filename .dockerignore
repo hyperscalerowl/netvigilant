@@ -1,0 +1,11 @@
+.git
+.github
+build
+.dart_tool
+.flutter-plugins
+.flutter-plugins-dependencies
+.idea
+.vscode
+coverage
+pubspec.lock
+*.log

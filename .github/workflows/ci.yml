@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter pub run dart_code_metrics:metrics analyze lib
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: flutter test --coverage
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/lcov.info
+
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: \${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Enable platforms
+        shell: bash
+        run: |
+          flutter config --enable-linux-desktop || true
+          flutter config --enable-macos-desktop || true
+          flutter config --enable-windows-desktop || true
+      - name: Fetch dependencies
+        run: flutter pub get
+      - name: Scaffold missing platform folders
+        run: flutter create . --platforms android,ios,linux,macos,windows,web
+      - name: Build Android artifacts
+        if: runner.os == 'Linux'
+        run: |
+          flutter build apk --release
+          flutter build appbundle --release
+          flutter build linux --release
+          flutter build web --release
+      - name: Build Apple artifacts
+        if: runner.os == 'macOS'
+        run: |
+          flutter build ios --no-codesign
+          flutter build macos --release
+      - name: Build Windows artifacts
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: flutter build windows --release
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: build-\${{ matrix.os }}
+          path: |
+            build/app/outputs/**/*
+            build/linux/**/*
+            build/macos/**/*
+            build/windows/**/*
+            build/web/**/*
+        continue-on-error: true

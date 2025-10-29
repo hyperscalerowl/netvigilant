@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  app:
+    build: .
+    image: ghcr.io/\${GITHUB_REPOSITORY_OWNER:-local}/netguard:dev
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: bash -c "flutter pub get && flutter test"

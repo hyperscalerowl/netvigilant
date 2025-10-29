@@ -1,0 +1,26 @@
+# Flutter related
+**/.DS_Store
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
+.melos_tool
+build/
+coverage/
+android/.gradle/
+android/app/app.iml
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/.symlinks/
+*.iml
+.idea/
+.vscode/
+.DS_Store
+.env
+*.lock
+*.log
+pubspec.lock
+.dart_tool/**
+# Docker
+.docker/
