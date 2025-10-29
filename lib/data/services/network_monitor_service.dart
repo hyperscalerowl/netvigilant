@@ -19,6 +19,10 @@ class NetworkMonitorService {
   }
 
   Future<void> stopMonitoring() async {
+    if (_controller.isClosed) {
+      return;
+    }
+
     await _controller.close();
   }
 }

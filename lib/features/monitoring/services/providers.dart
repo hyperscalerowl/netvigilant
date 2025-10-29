@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/models/network_event.dart';
@@ -6,7 +8,9 @@ import '../../../data/services/network_monitor_service.dart';
 final Provider<NetworkMonitorService> networkMonitorServiceProvider =
     Provider<NetworkMonitorService>((ProviderRef<NetworkMonitorService> ref) {
   final NetworkMonitorService service = NetworkMonitorService();
-  ref.onDispose(service.stopMonitoring);
+  ref.onDispose(() {
+    unawaited(service.stopMonitoring());
+  });
   return service;
 });
 
