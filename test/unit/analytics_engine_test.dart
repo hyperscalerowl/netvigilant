@@ -9,7 +9,7 @@ void main() {
     final List<NetworkEvent> sampleEvents = <NetworkEvent>[
       NetworkEvent(
         appName: 'Browser',
-        timestamp: DateTime(2024, 01, 01, 12),
+        timestamp: DateTime.utc(2024, 1, 1, 12),
         direction: TrafficDirection.outgoing,
         bytesTransferred: 100,
         remoteAddress: '8.8.8.8',
@@ -17,7 +17,7 @@ void main() {
       ),
       NetworkEvent(
         appName: 'Browser',
-        timestamp: DateTime(2024, 01, 01, 12, 01),
+        timestamp: DateTime.utc(2024, 1, 1, 12, 1),
         direction: TrafficDirection.incoming,
         bytesTransferred: 200,
         remoteAddress: '8.8.8.8',
@@ -25,7 +25,7 @@ void main() {
       ),
       NetworkEvent(
         appName: 'Messenger',
-        timestamp: DateTime(2024, 01, 01, 13),
+        timestamp: DateTime.utc(2024, 1, 1, 13),
         direction: TrafficDirection.outgoing,
         bytesTransferred: 50,
         remoteAddress: '1.1.1.1',
@@ -49,7 +49,7 @@ void main() {
       final List<NetworkEvent> events = <NetworkEvent>[
         const NetworkEvent(
           appName: '  Browser  ',
-          timestamp: DateTime(2024, 01, 01, 12),
+          timestamp: DateTime.utc(2024, 1, 1, 12),
           direction: TrafficDirection.outgoing,
           bytesTransferred: 100,
           remoteAddress: '8.8.8.8',
@@ -57,7 +57,7 @@ void main() {
         ),
         const NetworkEvent(
           appName: 'browser',
-          timestamp: DateTime(2024, 01, 01, 13),
+          timestamp: DateTime.utc(2024, 1, 1, 13),
           direction: TrafficDirection.incoming,
           bytesTransferred: 200,
           remoteAddress: '8.8.4.4',
@@ -65,7 +65,7 @@ void main() {
         ),
         const NetworkEvent(
           appName: 'Browser',
-          timestamp: DateTime(2024, 01, 01, 14),
+          timestamp: DateTime.utc(2024, 1, 1, 14),
           direction: TrafficDirection.incoming,
           bytesTransferred: -50,
           remoteAddress: '1.1.1.1',
@@ -73,7 +73,7 @@ void main() {
         ),
         const NetworkEvent(
           appName: 'Messenger',
-          timestamp: DateTime(2024, 01, 01, 15),
+          timestamp: DateTime.utc(2024, 1, 1, 15),
           direction: TrafficDirection.outgoing,
           bytesTransferred: 150,
           remoteAddress: '1.1.1.1',
@@ -92,7 +92,7 @@ void main() {
       final List<NetworkEvent> events = <NetworkEvent>[
         const NetworkEvent(
           appName: 'Email',
-          timestamp: DateTime(2024, 01, 01, 10),
+          timestamp: DateTime.utc(2024, 1, 1, 10),
           direction: TrafficDirection.outgoing,
           bytesTransferred: 100,
           remoteAddress: '9.9.9.9',
@@ -100,7 +100,7 @@ void main() {
         ),
         const NetworkEvent(
           appName: 'Browser',
-          timestamp: DateTime(2024, 01, 01, 11),
+          timestamp: DateTime.utc(2024, 1, 1, 11),
           direction: TrafficDirection.outgoing,
           bytesTransferred: 100,
           remoteAddress: '8.8.8.8',
@@ -124,7 +124,7 @@ void main() {
         ...sampleEvents,
         const NetworkEvent(
           appName: 'Browser',
-          timestamp: DateTime(2024, 01, 01, 14),
+          timestamp: DateTime.utc(2024, 1, 1, 14),
           direction: TrafficDirection.incoming,
           bytesTransferred: -20,
           remoteAddress: '8.8.8.8',

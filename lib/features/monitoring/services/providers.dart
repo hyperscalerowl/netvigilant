@@ -6,7 +6,7 @@ import '../../../data/models/network_event.dart';
 import '../../../data/services/network_monitor_service.dart';
 
 final Provider<NetworkMonitorService> networkMonitorServiceProvider =
-    Provider<NetworkMonitorService>((ProviderRef<NetworkMonitorService> ref) {
+    Provider<NetworkMonitorService>((Ref ref) {
   final NetworkMonitorService service = NetworkMonitorService();
   ref.onDispose(() {
     unawaited(service.stopMonitoring());
@@ -15,7 +15,7 @@ final Provider<NetworkMonitorService> networkMonitorServiceProvider =
 });
 
 final StreamProvider<NetworkEvent> liveNetworkEventsProvider =
-    StreamProvider<NetworkEvent>((StreamProviderRef<NetworkEvent> ref) {
+    StreamProvider<NetworkEvent>((Ref ref) {
   final NetworkMonitorService service = ref.watch(networkMonitorServiceProvider);
   return service.events;
 });

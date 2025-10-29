@@ -7,10 +7,10 @@ ThemeData buildLightTheme() {
     useMaterial3: true,
     appBarTheme: AppBarTheme(
       elevation: 0,
-      backgroundColor: scheme.background,
-      foregroundColor: scheme.onBackground,
+      backgroundColor: scheme.surface,
+      foregroundColor: scheme.onSurface,
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 3,
       margin: const EdgeInsets.all(12),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
