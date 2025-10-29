@@ -1,0 +1,36 @@
+name: Security
+
+on:
+  schedule:
+    - cron: '0 2 * * 1'
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  sast:
+    name: Static Application Security Testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: flutter pub run dart_code_metrics:metrics analyze lib
+
+  sca:
+    name: Software Composition Analysis
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aquasecurity/trivy-action@0.20.0
+        with:
+          scan-type: fs
+          format: table
+          exit-code: '1'
+          ignore-unfixed: true
+          severity: 'CRITICAL,HIGH'
