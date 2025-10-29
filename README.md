@@ -2,9 +2,9 @@
 
 ![NetGuard Banner](docs/images/logo.png)
 
-[![CI](https://github.com/your-org/netvigilant/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/netvigilant/actions/workflows/ci.yml)
-[![Security](https://github.com/your-org/netvigilant/actions/workflows/security.yml/badge.svg)](https://github.com/your-org/netvigilant/actions/workflows/security.yml)
-[![Container](https://github.com/your-org/netvigilant/actions/workflows/container.yml/badge.svg)](https://github.com/your-org/netvigilant/actions/workflows/container.yml)
+[![CI](https://github.com/hyperscalerowl/netvigilant/actions/workflows/ci.yml/badge.svg)](https://github.com/hyperscalerowl/netvigilant/actions/workflows/ci.yml)
+[![Security](https://github.com/hyperscalerowl/netvigilant/actions/workflows/security.yml/badge.svg)](https://github.com/hyperscalerowl/netvigilant/actions/workflows/security.yml)
+[![Container](https://github.com/hyperscalerowl/netvigilant/actions/workflows/container.yml/badge.svg)](https://github.com/hyperscalerowl/netvigilant/actions/workflows/container.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > Empower yourself with complete transparency and control over your device's network activity.
@@ -85,7 +85,7 @@ Additional documentation lives in [`docs/`](docs/) and covers architecture decis
 ```bash
 # Install dependencies
 dart pub global activate melos # optional helper
-git clone https://github.com/your-org/netvigilant.git
+git clone https://github.com/hyperscalerowl/netvigilant.git
 cd netvigilant
 flutter pub get
 
@@ -179,7 +179,7 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 ---
 
 ## 📬 Support
-- Issues: [GitHub Issues](https://github.com/your-org/netvigilant/issues)
+- Issues: [GitHub Issues](https://github.com/hyperscalerowl/netvigilant/issues)
 - Email: support@netguard.app
 - Community: Discord invite coming soon
 
