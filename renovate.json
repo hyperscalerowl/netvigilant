@@ -1,0 +1,16 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":semanticCommits"
+  ],
+  "timezone": "UTC",
+  "schedule": ["after 8pm on sunday"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^flutter", "^dart"],
+      "groupName": "flutter ecosystem",
+      "enabled": true
+    }
+  ]
+}

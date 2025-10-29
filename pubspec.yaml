@@ -1,0 +1,44 @@
+name: netguard
+description: Network monitoring and data transparency Flutter application.
+version: 0.1.0+1
+publish_to: "none"
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_riverpod: ^2.5.1
+  riverpod: ^2.5.1
+  sqflite: ^2.3.3
+  path: ^1.9.0
+  path_provider: ^2.1.4
+  flutter_secure_storage: ^9.2.2
+  intl: ^0.19.0
+  uuid: ^3.0.7
+  share_plus: ^10.0.2
+  connectivity_plus: ^6.0.5
+  permission_handler: ^11.3.1
+  fl_chart: ^0.68.0
+  pdf: ^3.11.1
+  printing: ^5.13.1
+  csv: ^6.0.0
+  collection: ^1.18.0
+  equatable: ^2.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  dart_code_metrics: ^5.7.6
+  mocktail: ^1.0.3
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/translations/
